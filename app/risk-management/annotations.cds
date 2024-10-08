@@ -103,6 +103,11 @@ annotate service.RiskService with @(
             Value : miti.descr,
             Label : 'Mitigation Description',
         },
+        {
+            $Type : 'UI.DataFieldForAnnotation',
+            Target : 'bp/@Communication.Contact#contact',
+            Label : '{i18n>ContactName}',
+        },
     ],
     UI.SelectionFields : [
         prio_code,
@@ -150,6 +155,11 @@ annotate service.RiskService with @(
                 Value : impact,
                 Label : '{i18n>Impact}',
                 Criticality : criticality,
+            },
+            {
+                $Type : 'UI.DataFieldForAnnotation',
+                Target : 'bp/@Communication.Contact#contact1',
+                Label : '{i18n>ContactName}',
             },
         ],
     },
@@ -215,4 +225,15 @@ annotate service.Mitigations with {
 annotate service.Mitigations with {
     timeline @Common.FieldControl : #ReadOnly
 };
+
+annotate service.BusinessPartners with @(
+    Communication.Contact #contact : {
+        $Type : 'Communication.ContactType',
+        fn : FullName,
+    },
+    Communication.Contact #contact1 : {
+        $Type : 'Communication.ContactType',
+        fn : FullName,
+    },
+);
 
